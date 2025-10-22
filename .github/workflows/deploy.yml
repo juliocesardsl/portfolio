@@ -1,0 +1,23 @@
+name: 🚀 Deploy do Portfólio
+
+on:
+  push:
+    branches:
+      - main  # sempre que fizer push na main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📂 Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: 🧱 Configurar GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
+
+      - name: 🚀 Publicar no GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
